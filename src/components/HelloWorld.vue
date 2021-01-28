@@ -1,40 +1,162 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex" target="_blank" rel="noopener">vuex</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+<v-app>
+     <v-dialog   max-width="500px" v-model="ipDialog">
+     <v-card min-height="200px">
+       <v-card-title>Intialize</v-card-title>
+
+       <v-card-action>
+         <v-container>
+          <v-text-field prefix="IP Address:" outlined v-model="ipAddress">   </v-text-field>
+
+          <v-row justify="center">
+                     <v-btn @click="ipDialog=!ipDialog" class="green" >
+            Done
+          </v-btn>
+          </v-row>
+          </v-container>
+          
+ 
+       </v-card-action>
+      
+
+    
+     </v-card>
+   </v-dialog>
+
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+     
+  
+      <v-btn
+        @click="ipDialog=!ipDialog"
+      
+      >
+        <span class="mr-2">Six Axis Robot</span>
+        <v-icon>mdi-key</v-icon>
+      </v-btn>
+    </v-app-bar>
+ <div class="hello">
+    <v-container>
+    <v-row>
+        <v-col lg="3" md="4" cols="6" sm="4" >
+        <v-container>
+        <v-row align="center"  >
+      <v-btn fab @click="jointminus(1)" ><v-icon x-large>mdi-minus</v-icon></v-btn>  <b><h1 style="margin:10px">Joint 1</h1></b> <v-btn @click="jointplus(1)"  fab><v-icon x-large>mdi-plus</v-icon></v-btn>
+        </v-row>
+        </v-container>
+      </v-col>   <v-col lg="3" md="4" cols="6" sm="4" >
+        <v-container>
+        <v-row align="center"  >
+      <v-btn fab @click="jointminus(2)"><v-icon x-large>mdi-minus</v-icon></v-btn>  <b><h1 style="margin:10px">Joint 2</h1></b> <v-btn @click="jointplus(2)" fab><v-icon x-large>mdi-plus</v-icon></v-btn>
+        </v-row>
+        </v-container>
+      </v-col>   <v-col lg="3" md="4" cols="6" sm="4" >
+        <v-container>
+        <v-row align="center"  >
+      <v-btn fab @click="jointminus(3)" ><v-icon x-large>mdi-minus</v-icon></v-btn>  <b><h1 style="margin:10px">Joint 3</h1></b> <v-btn  @click="jointplus(3)" fab><v-icon x-large>mdi-plus</v-icon></v-btn>
+        </v-row>
+        </v-container>
+      </v-col>   <v-col lg="3" md="4" cols="6" sm="4" >
+        <v-container>
+        <v-row align="center"  >
+      <v-btn fab @click="jointminus(4)"><v-icon x-large>mdi-minus</v-icon></v-btn>  <b><h1 style="margin:10px">Joint 4</h1></b> <v-btn @click="jointplus(4)" fab><v-icon x-large>mdi-plus</v-icon></v-btn>
+        </v-row>
+        </v-container>
+      </v-col>   <v-col lg="3" md="4" cols="6" sm="4" >
+        <v-container>
+        <v-row align="center"  >
+      <v-btn fab @click="jointminus(5)"><v-icon x-large>mdi-minus</v-icon></v-btn>  <b><h1 style="margin:10px">Joint 5</h1></b> <v-btn @click="jointplus(5)" fab><v-icon x-large>mdi-plus</v-icon></v-btn>
+        </v-row>
+        </v-container>
+      </v-col>
+         <v-col lg="3" md="4" cols="6" sm="4" >
+        <v-container>
+        <v-row align="center"  >
+      <v-btn fab @click="jointminus(6)"><v-icon x-large>mdi-minus</v-icon></v-btn>  <b><h1 style="margin:10px">Joint 6 </h1></b> <v-btn @click="jointplus(6)" fab><v-icon x-large>mdi-plus</v-icon></v-btn>
+        </v-row>
+        </v-container>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-btn x-large color="red" @click="auto(1)"><b style="  color:white">Auto</b>
+      </v-btn>
+    </v-row>
+    </v-container>
+  </div>  
+
+  </v-app>
+ 
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  } ,data: () => ({
+    ipAddress:"",
+    ipDialog:false,
+    //
+  }),methods:
+  {
+    jointplus(motorNumber){
+   axios({
+              method: "GET",
+              url:
+                "http://"+this.ipAddress+"/jointForward?q="+motorNumber,
+              headers: { "Content-Type": "application/json" },
+              data: {
+                q: motorNumber,
+              },
+            })
+              .then((response) => {
+                console.log("success");
+             
+              })
+              .catch((error) => {
+                this.successDialog = true;
+              }); 
+    },
+        jointminus(motorNumber){
+   axios({
+              method: "GET",
+              url:
+                "http://"+this.ipAddress+"/jointBackward?q="+motorNumber,
+              headers: { "Content-Type": "application/json" },
+              data: {
+                q: motorNumber,
+              },
+            })
+              .then((response) => {
+                console.log("success");
+             
+              })
+              .catch((error) => {
+                this.successDialog = true;
+              }); 
+    },
+        auto(motorNumber){
+   axios({
+              method: "GET",
+              url:
+                "http://"+this.ipAddress+"/auto?q="+motorNumber,
+              headers: { "Content-Type": "application/json" },
+              data: {
+                q: motorNumber,
+              },
+            })
+              .then((response) => {
+                console.log("success");
+             
+              })
+              .catch((error) => {
+                this.successDialog = true;
+              }); 
+    }
   }
 }
 </script>
